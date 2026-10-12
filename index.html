@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMKOC Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active login-bg">
+      <div class="glass-card">
+        <h1>Welcome Back</h1>
+        <p>Login to track your TMKOC journey</p>
+        <form id="login-form">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit" class="btn primary">Login / Register</button>
+        </form>
+        <div class="divider">
+          <span>OR</span>
+        </div>
+        <button id="google-login-btn" class="btn google-btn">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo" class="google-icon">
+          Sign in with Gmail
+        </button>
+      </div>
+    </div>
+
+    <!-- Profile Setup Screen -->
+    <div id="profile-screen" class="screen profile-bg">
+      <div class="glass-card profile-card">
+        <h1>Your Profile & Performance</h1>
+        
+        <div class="performance-section">
+          <h3>Performance Stats</h3>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <span class="stat-value" id="stat-episodes">0</span>
+              <span class="stat-label">Episodes Watched</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value" id="stat-time">0h</span>
+              <span class="stat-label">Watch Time</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value" id="stat-rank">Newbie</span>
+              <span class="stat-label">Fan Rank</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="avatar-upload">
+          <h3>Set Avatar</h3>
+          <img id="avatar-preview" src="https://via.placeholder.com/150" alt="Avatar">
+          <input type="file" id="avatar-input" accept="image/*" hidden>
+          <button class="btn secondary" onclick="document.getElementById('avatar-input').click()">Upload Image</button>
+        </div>
+        
+        <div class="edit-profile" style="margin-bottom: 2rem;">
+          <input type="text" id="edit-username" placeholder="Edit Username" required>
+        </div>
+
+        <button id="save-profile" class="btn primary">Continue to Dashboard</button>
+      </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen">
+      <nav class="navbar">
+        <div class="brand">📺 TMKOC Tracker</div>
+        <div class="user-profile">
+          <div id="open-profile-btn" style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+            <span id="nav-username">User</span>
+            <img id="nav-avatar" src="https://via.placeholder.com/40" alt="Avatar">
+          </div>
+          <button id="logout-btn" class="btn icon-btn" title="Logout"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+      </nav>
+
+      <div class="dashboard-layout">
+        <div class="sidebar glass-panel">
+          <h3>Episodes (1-100)</h3>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          <p class="progress-text"><span id="completed-count">0</span>/100 Watched</p>
+          <div id="playlist" class="playlist">
+            <!-- Playlist items will be injected here -->
+          </div>
+        </div>
+
+        <div class="main-content glass-panel">
+          <div class="player-container">
+            <div id="youtube-player"></div>
+          </div>
+          <div class="video-info">
+            <h2 id="current-video-title">Select an episode to start watching</h2>
+            <div class="controls">
+              <button id="mark-completed" class="btn success" disabled><i class="fas fa-check"></i> Mark Completed</button>
+              <button id="next-video" class="btn primary" disabled>Next Episode <i class="fas fa-step-forward"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="videos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
